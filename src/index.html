@@ -4,11 +4,10 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/basics.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://kit.fontawesome.com/6271e40c9d.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class="sidebar">
-      <div class="title">
+    <div class="wrapper">
+      <div class="bulletin">
         <img src="assets/Logo44.png">
         <div class="name">
           Bulletin
@@ -38,10 +37,80 @@
           </li>
         </ul>
       </div>
+      <div class="page-title-wrapper">
+        <h1 class="page-title">Page Title</h1>
+        <div class="dropdown" id="dropdown-wrapper">
+          <button class="btn btn-action link" id="add-task-btn">
+            <i class="fa-solid fa-plus"></i>
+            Add Task
+          </button>
+          <div class="dropdown-form" id="dropdown-form">
+            <div class="form-icons">
+              <i class="fa-solid fa-trash" id="clear-form"></i>
+              <i class="fa-solid fa-x" id="close-form"></i>
+            </div>
+            <form autocomplete="off">
+              <div class="toggle-btn-wrapper">
+                <label id="fixed-switch-label" for="fixed-switch">Fixed Time:</label>
+                <input type="checkbox" id="fixed-switch">
+              </div>
+
+              <div>
+                <label for="task-title">Title:</label>
+                <input id="task-title" type="text">
+              </div>
+              
+              <div class="fixed">
+                <label for="task-starttime">Start Time:</label>
+                <input id="task-starttime" type="datetime-local">
+              </div>
+              <div class="fixed">
+                <label for="task-endtime">End Time:</label>
+                <input id="task-endtime" type="datetime-local">
+              </div>
+              <div class="unfixed">
+                <label for="task-duration">Duration:</label>
+                <input id="task-duration" type="number">
+              </div>
+              <div class="unfixed">
+                <label for="task-min-block">Min Block:</label>
+                <input id="task-min-block" type="number">
+              </div>
+              <div class="unfixed">
+                <label for="task-max-block">Max Block:</label>
+                <input id="task-max-block" type="number">
+              </div>
+              <div class="unfixed">
+                <label for="task-deadline">Deadline:</label>
+                <input id="task-deadline" type="datetime-local">
+              </div>
+              <div>
+                <label for="task-category">Category:</label>
+                <input id="task-category" type="text">
+              </div>
+              <div class="priority">
+                Priority:
+                <br>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div class="final-add-wrapper">
+                <button class="btn btn-action final-add" id="final-add-btn">
+                  <i class="fa-solid fa-plus"></i>
+                  Add
+                </button> 
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="main-content"></div>
     </div>
-    
-    <div id="main-content"></div>
-    
-    <script src="javascript/navbar.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/dropdown.js"></script>
+    <script src="https://kit.fontawesome.com/6271e40c9d.js" crossorigin="anonymous"></script>
   </body>
 </html>

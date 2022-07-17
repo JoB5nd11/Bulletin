@@ -1,8 +1,11 @@
-:root{
+body{
     --green: #71b280;
     --dark-green: #134e5e;
     
+    --light-blue: #74b1df;
     --blue: #3a7ca7;
+
+    --light-red: #ed7b79;
     --red: #a63d40;
 
     --white: #ffffff;
