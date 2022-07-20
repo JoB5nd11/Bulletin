@@ -3,7 +3,7 @@ use std::io::Write;
 use tauri::{command};
 
 #[command]
-pub fn add_task_to_file(){
+pub fn write_task_to_file(){
     let data = "New Task\n";
     let mut f = fs::OpenOptions::new()
         .write(true)

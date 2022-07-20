@@ -89,14 +89,15 @@
                 <input id="task-category" type="text">
               </div>
               <div class="priority">
-                Priority:
+                <label for="real-priority">Priority</label>
                 <br>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
+                <i id="star-1" class="fa-solid fa-star"></i>
+                <i id="star-2" class="fa-solid fa-star"></i>
+                <i id="star-3" class="fa-solid fa-star"></i>
+                <i id="star-4" class="fa-solid fa-star"></i>
+                <i id="star-5" class="fa-solid fa-star"></i>
               </div>
+              <input class="real-priority" id="real-priority" type="number" value="1">
               <div class="final-add-wrapper">
                 <button class="btn btn-action final-add" id="final-add-btn">
                   <i class="fa-solid fa-plus"></i>
@@ -110,7 +111,8 @@
       <div id="main-content"></div>
     </div>
     <script src="js/navbar.js"></script>
-    <script src="js/dropdown.js"></script>
+    <script src="js/dropdown.js" type="module"></script>
+    <script src="js/priority.js" type="module"></script>
     <script src="https://kit.fontawesome.com/6271e40c9d.js" crossorigin="anonymous"></script>
   </body>
 </html>

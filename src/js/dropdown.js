@@ -1,11 +1,10 @@
+import { uid } from "./utils/generators.js";
+
 const tauriAPI = window.__TAURI__;
-console.log(tauriAPI);
 
 const dropdown_form = document.getElementById('dropdown-form');
-const round_btn = document.getElementById('round-btn');
 const clear_form_btn = document.getElementById('clear-form');
-const fixed_check = document.getElementById('fixed-switch');
-const toggle_btn_div = document.getElementById('toggle-btn-div');
+const is_fixed = document.getElementById('fixed-switch');
 const final_add_btn = document.getElementById('final-add-btn');
 let fixed_elements = document.getElementsByClassName('fixed');
 let unfixed_elements = document.getElementsByClassName('unfixed');
@@ -35,32 +34,22 @@ function showUnfixedElements(){
 }
 
 function setFixedToggle(){
-    fixed_check.checked = true;
-    if(!fixed_check.parentNode.classList.contains('active')){
-        fixed_check.parentNode.classList.add('active');
+    is_fixed.checked = true;
+    if(!is_fixed.parentNode.classList.contains('active')){
+        is_fixed.parentNode.classList.add('active');
     }
 }
 
 function resetFixedToggle(){
-    fixed_check.checked = false;
-    if(fixed_check.parentNode.classList.contains('active')){
-        fixed_check.parentNode.classList.remove('active');
+    is_fixed.checked = false;
+    if(is_fixed.parentNode.classList.contains('active')){
+        is_fixed.parentNode.classList.remove('active');
     }
 }
 
-function setFormPlaceholder(){
-    const taskTitle = document.getElementById('task-title');
-    const taskCategory = document.getElementById('task-category');
-    const fixedStartTime = document.getElementById('task-starttime');
-    const fixedEndTime = document.getElementById('task-endtime');
-    const durationTime = document.getElementById('task-duration');
-    const minBlock = document.getElementById('task-min-block');
-    const maxBlock = document.getElementById('task-max-block');
-    const deadline = document.getElementById('task-deadline');
-
-    resetFixedToggle();
-    taskTitle.value = "";
-    taskCategory.value = "";
+function setFormPlaceholder(){resetFixedToggle();
+    document.getElementById('task-title').value = "";
+    document.getElementById('task-category').value = "";
 
     let currentDatetime = new Date();
     let inTwoHours = new Date();
@@ -75,30 +64,45 @@ function setFormPlaceholder(){
     inOneWeek.setDate(currentDatetime.getDate() + 7);
     inOneWeek.setHours(currentDatetime.getHours()); //somehow doesn't take the timezone
 
-    fixedStartTime.value = currentDatetime.toISOString().substring(0, 16);
-    fixedEndTime.value = inTwoHours.toISOString().substring(0, 16);
-    deadline.value = inOneWeek.toISOString().substring(0, 16);
-    durationTime.placeholder = 120;
-    minBlock.placeholder = 15;
-    maxBlock.placeholder = 90;
+    document.getElementById('task-starttime').value = currentDatetime.toISOString().substring(0, 16);
+    document.getElementById('task-endtime').value = inTwoHours.toISOString().substring(0, 16);
+    document.getElementById('task-deadline').value = inOneWeek.toISOString().substring(0, 16);
+    document.getElementById('task-duration').placeholder = 120;
+    document.getElementById('task-min-block').placeholder = 15;
+    document.getElementById('task-max-block').placeholder = 90;
 
-    fixed_check.parentNode.classList.remove('active');
+    is_fixed.parentNode.classList.remove('active');
+    for(let i = 1; i <= 5; i++){
+        document.getElementById('star-' + i.toString()).classList.remove('active');
+    }
 }
-
 
 function resetPriority(){
     // TODO
 }
 
+function get_data_from_form(){
+    // TODO
+    if(is_fixed.checked){
+        
+    }else{
+        
+    }
+}
 
-fixed_check.addEventListener('change', (event) => {
+function form_data_to_json(){
+    //TODO
+}
+
+
+is_fixed.addEventListener('change', (event) => {
     event.target.checked ? setFixedToggle() : resetFixedToggle();
     event.target.checked ? showFixedElements() : showUnfixedElements();
 });
 
-fixed_check.addEventListener('keypress', (event) => {
-    if (event.which == 13) fixed_check.checked = !fixed_check.checked;
-    fixed_check.dispatchEvent(new Event('change'));
+is_fixed.addEventListener('keypress', (event) => {
+    if (event.which == 13) is_fixed.checked = !is_fixed.checked;
+    is_fixed.dispatchEvent(new Event('change'));
 });
 
 dropdown_form.addEventListener('submit', (event) => {
@@ -115,5 +119,7 @@ final_add_btn.addEventListener('keypress', (event) => {
 });
 
 final_add_btn.addEventListener('click', (event) => {
-    tauriAPI.invoke('add_task_to_file', {});
+    //form_data = get_data_from_form(); //TODO
+    //send_data = form_data_to_json(); //TODO
+    //tauriAPI.invoke('write_task_to_file', {}); //TODO
 });
