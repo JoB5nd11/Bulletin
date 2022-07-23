@@ -75,25 +75,34 @@ function setFormPlaceholder(){resetFixedToggle();
     for(let i = 1; i <= 5; i++){
         document.getElementById('star-' + i.toString()).classList.remove('active');
     }
-}
-
-function resetPriority(){
-    // TODO
+    document.getElementById('real-priority').value = 1;
 }
 
 function get_data_from_form(){
-    // TODO
+    let data;
     if(is_fixed.checked){
-        
+        return {
+            id: uid(),
+            fixed: true,
+            title: document.getElementById('task-title').value,
+            start_time: document.getElementById('task-starttime').value,
+            end_time: document.getElementById('task-endtime').value,
+            category: document.getElementById('task-category').value
+        };
     }else{
-        
+        return {
+            id: uid(),
+            fixed: false,
+            title: document.getElementById('task-title').value,
+            duration: document.getElementById('task-duration').value,
+            min_block: document.getElementById('task-min-block').value,
+            max_block: document.getElementById('task-max-block').value,
+            deadline: document.getElementById('task-deadline').value,
+            category: document.getElementById('task-category').value,
+            priority: document.getElementById('real-priority').value
+        }; 
     }
 }
-
-function form_data_to_json(){
-    //TODO
-}
-
 
 is_fixed.addEventListener('change', (event) => {
     event.target.checked ? setFixedToggle() : resetFixedToggle();
@@ -101,12 +110,8 @@ is_fixed.addEventListener('change', (event) => {
 });
 
 is_fixed.addEventListener('keypress', (event) => {
-    if (event.which == 13) is_fixed.checked = !is_fixed.checked;
+    if (event.which == 13 && this === document.activeElement) is_fixed.checked = !is_fixed.checked;
     is_fixed.dispatchEvent(new Event('change'));
-});
-
-dropdown_form.addEventListener('submit', (event) => {
-    event.preventDefault();
 });
 
 clear_form_btn.addEventListener('click', (event) => {
@@ -114,12 +119,21 @@ clear_form_btn.addEventListener('click', (event) => {
     showUnfixedElements();
 });
 
-final_add_btn.addEventListener('keypress', (event) => {
-    if (event.which == 13) final_add_btn.click();
+final_add_btn.addEventListener('click', (event) => {
+    let form_data = JSON.stringify(get_data_from_form(), null, 2);
+    console.log(form_data);
+    tauriAPI.invoke('write_task_to_file', { jsonTask: form_data});
+    setFormPlaceholder();
 });
 
-final_add_btn.addEventListener('click', (event) => {
-    //form_data = get_data_from_form(); //TODO
-    //send_data = form_data_to_json(); //TODO
-    //tauriAPI.invoke('write_task_to_file', {}); //TODO
+final_add_btn.addEventListener('keypress', (event) => {
+    if(event.which === 13) final_add_btn.click();
+})
+
+document.getElementById('add-task-form').addEventListener('keypress', (event) => {
+    if(event.which === 13) event.preventDefault();
+});
+
+document.getElementById('add-task-form').addEventListener('submit', (event) => {
+    event.preventDefault();
 });

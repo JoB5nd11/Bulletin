@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/basics.css">
     <link rel="stylesheet" href="css/style.css">
+    <title>Bulletin</title>
   </head>
   <body>
     <div class="wrapper">
@@ -49,7 +50,7 @@
               <i class="fa-solid fa-trash" id="clear-form"></i>
               <i class="fa-solid fa-x" id="close-form"></i>
             </div>
-            <form autocomplete="off">
+            <form autocomplete="off" id="add-task-form">
               <div class="toggle-btn-wrapper">
                 <label id="fixed-switch-label" for="fixed-switch">Fixed Time:</label>
                 <input type="checkbox" id="fixed-switch">
@@ -88,7 +89,7 @@
                 <label for="task-category">Category:</label>
                 <input id="task-category" type="text">
               </div>
-              <div class="priority">
+              <div class="priority unfixed">
                 <label for="real-priority">Priority</label>
                 <br>
                 <i id="star-1" class="fa-solid fa-star"></i>
@@ -96,8 +97,8 @@
                 <i id="star-3" class="fa-solid fa-star"></i>
                 <i id="star-4" class="fa-solid fa-star"></i>
                 <i id="star-5" class="fa-solid fa-star"></i>
+                <input class="real-priority" id="real-priority" type="number" value="1">
               </div>
-              <input class="real-priority" id="real-priority" type="number" value="1">
               <div class="final-add-wrapper">
                 <button class="btn btn-action final-add" id="final-add-btn">
                   <i class="fa-solid fa-plus"></i>
